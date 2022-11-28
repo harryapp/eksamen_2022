@@ -21,4 +21,6 @@ jobs:
           rev=$(git rev-parse --short HEAD)
           docker build . -t onlinestore-app
           docker tag onlinestore-app 244530008913.dkr.ecr.eu-west-1.amazonaws.com/1037:$rev
+          docker tag onlinestore-app 244530008913.dkr.ecr.eu-west-1.amazonaws.com/1037:latest
           docker push 244530008913.dkr.ecr.eu-west-1.amazonaws.com/1037:$rev
+          docker push 244530008913.dkr.ecr.eu-west-1.amazonaws.com/1037:latest
