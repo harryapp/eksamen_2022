@@ -18,9 +18,10 @@ public class ShoppingCartController implements ApplicationListener<ApplicationEv
     private Map<String, Cart> carts = new HashMap<>();
     private MeterRegistry meterRegistry;
 
-    @Autowired
+
     private final CartService cartService;
 
+    @Autowired
     public ShoppingCartController(CartService cartService, MeterRegistry meterRegistry) {
         this.cartService = cartService;
         this.meterRegistry = meterRegistry;
