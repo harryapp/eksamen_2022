@@ -67,7 +67,7 @@ public class ShoppingCartController implements ApplicationListener<ApplicationEv
     @Override
     public void onApplicationEvent(ApplicationEvent applicationEvent) {
         //"carts" - Antall handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
-        Gauge.builder("carts", carts, c -> c.size()).register(meterRegistry);
+        Gauge.builder("carts", carts, c -> c.values().size()).register(meterRegistry);
 
 
         //"cartsvalue" - Total sum med penger i handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
