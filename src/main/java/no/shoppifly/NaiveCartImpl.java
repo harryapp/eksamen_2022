@@ -1,13 +1,27 @@
 package no.shoppifly;
 
+import io.micrometer.core.instrument.Counter;
+import io.micrometer.core.instrument.Gauge;
+import io.micrometer.core.instrument.MeterRegistry;
+import io.micrometer.core.instrument.Metrics;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationListener;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
 @Component
-class NaiveCartImpl implements CartService {
+class NaiveCartImpl implements CartService, ApplicationListener<ApplicationEvent> {
 
     private final Map<String, Cart> shoppingCarts = new HashMap<>();
+    private final MeterRegistry meterRegistry;
+
+    @Autowired
+    public NaiveCartImpl(MeterRegistry meterRegistry) {
+        this.meterRegistry = meterRegistry;
+    }
+
 
     @Override
     public Cart getCart(String id) {
@@ -26,6 +40,8 @@ class NaiveCartImpl implements CartService {
     @Override
     public String checkout(Cart cart) {
         shoppingCarts.remove(cart.getId());
+        meterRegistry.counter("checkouts").increment();
+
         return UUID.randomUUID().toString();
     }
 
@@ -40,5 +56,28 @@ class NaiveCartImpl implements CartService {
                 .flatMap(c -> c.getItems().stream()
                         .map(i -> i.getUnitPrice() * i.getQty()))
                 .reduce(0f, Float::sum);
+    }
+
+    @Override
+    public void onApplicationEvent(ApplicationEvent applicationEvent) {
+        //"carts" - Antall handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
+        Gauge.builder("carts", shoppingCarts, s -> s.values().size()).register(meterRegistry);
+
+        //"cartsvalue" - Total sum med penger i handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
+        Gauge.builder("cartsvalue", shoppingCarts,
+                        s -> s.values()
+                                .stream()
+                                .map(Cart::getCartSum)
+                                .mapToDouble(Float::doubleValue)
+                                .sum())
+                .register(meterRegistry);
+
+        //counter = Counter.builder("checkouts" ).register(meterRegistry);
+        //"checkouts" - Totalt antall handlevogner er blitt sjekket ut
+        //Gauge.builder("checkouts",  numberOfCheckouts, Integer::valueOf).register(meterRegistry);
+
+
+
+        //"checkout_latency" - Gjennomsnittlig responstid for Checkout metoden i Controller-klassen.
     }
 }
