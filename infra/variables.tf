@@ -5,4 +5,5 @@ variable "candidate_id" {
 
 variable "candidate_email"  {
   type = string
+  default = "harry.mliam@gmail.com"
 }

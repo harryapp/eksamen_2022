@@ -1,5 +1,6 @@
 package no.shoppifly;
 
+import io.micrometer.core.annotation.Timed;
 import io.micrometer.core.instrument.Gauge;
 import io.micrometer.core.instrument.MeterRegistry;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,12 +14,9 @@ import java.util.List;
 import java.util.Map;
 
 @RestController()
-public class ShoppingCartController implements ApplicationListener<ApplicationEvent> {
+public class ShoppingCartController {
 
-    private Map<String, Cart> carts = new HashMap<>();
-    private MeterRegistry meterRegistry;
-
-
+    private final MeterRegistry meterRegistry;
     private final CartService cartService;
 
     @Autowired
@@ -37,6 +35,7 @@ public class ShoppingCartController implements ApplicationListener<ApplicationEv
      *
      * @return an order ID
      */
+    @Timed(value = "checkout_latency")
     @PostMapping(path = "/cart/checkout")
     public String checkout(@RequestBody Cart cart) {
         return cartService.checkout(cart);
@@ -64,14 +63,5 @@ public class ShoppingCartController implements ApplicationListener<ApplicationEv
     }
 
 
-    @Override
-    public void onApplicationEvent(ApplicationEvent applicationEvent) {
-        //"carts" - Antall handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
-        Gauge.builder("carts", carts, c -> c.values().size()).register(meterRegistry);
 
-
-        //"cartsvalue" - Total sum med penger i handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
-        //"checkouts" - Totalt antall handlevogner er blitt sjekket ut
-        //"checkout_latency" - Gjennomsnittlig responstid for Checkout metoden i Controller-klassen.
-    }
 }
