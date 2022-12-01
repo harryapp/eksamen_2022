@@ -7,8 +7,8 @@ terraform {
   }
 
   backend "s3" {
-    bucket = "analytics-${var.candidate_id}"
-    key    = "shopifly-analytics.state"
+    bucket = "analytics-1037"
+    key    = "terraform.state"
     region = "eu-north-1"
   }
 
