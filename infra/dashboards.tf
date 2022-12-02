@@ -78,7 +78,7 @@ resource "aws_cloudwatch_dashboard" "main" {
             "dimensions": [
               "class": "no.shoppifly.ShoppingCartController",
               "expection": "none",
-              "method": "checkout",
+              "method": "checkout"
             ]
           ]
         ],
