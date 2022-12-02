@@ -3,6 +3,7 @@ variable "candidate_id" {
   default = "1037"
 }
 
+
 variable "candidate_email"  {
   type = string
   default = "harry.mliam@gmail.com"
