@@ -74,7 +74,7 @@ resource "aws_cloudwatch_dashboard" "main" {
         "metrics": [
           [
             "${var.candidate_id}",
-            "checkout_latency"
+            "checkout_latency.avg"
           ]
         ],
         "period": 300,
