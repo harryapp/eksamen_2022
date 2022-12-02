@@ -11,7 +11,6 @@ import java.util.List;
 public class Cart {
     private String id;
     List<Item> items = new ArrayList<>();
-    private boolean isCheckedout;
 
     public float getCartSum(){
         float sum = 0;
