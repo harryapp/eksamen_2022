@@ -77,11 +77,13 @@ resource "aws_cloudwatch_dashboard" "main" {
             "checkout_latency.avg"
           ],
         ],
-        "Unit": "Milliseconds",
         "period": 300,
         "stat": "Maximum",
         "region": "eu-west-1",
-        "title": "Average latency for checkout method"
+        "title": "Average latency for checkout method",
+        "class": "no.shoppifly.ShoppingCartController",
+        "method": "checkout",
+        "exception": "none"
       }
     }
 
