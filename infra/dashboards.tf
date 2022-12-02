@@ -63,7 +63,6 @@ resource "aws_cloudwatch_dashboard" "main" {
         "title": "Total checked out carts per hour"
       }
     },
-
     {
       "type": "metric",
       "x": 0,
@@ -72,7 +71,7 @@ resource "aws_cloudwatch_dashboard" "main" {
       "height": 6,
       "properties": {
         "metrics": [
-            { "expression": "SELECT AVG("checkout_latency.avg") FROM SCHEMA("1037", class,"exception","method") WHERE "exception" = 'none' AND "method" = 'checkout' AND class = 'no.shoppifly.ShoppingCartController'"}
+          { "expression": "SELECT MAX(CPUUtilization) FROM SCHEMA(\"AWS/EC2\", InstanceId) GROUP BY InstanceId LIMIT 10", "label": "View the 10 max CPU Utilization", "id": "q1" }
         ],
         "period": 300,
         "stat": "Average",
