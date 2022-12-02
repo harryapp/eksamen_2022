@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_dashboard" "main" {
   dashboard_name = var.candidate_id
-## Jim; seriously! we can use any word here.. How cool is that?
+  ## Jim; seriously! we can use any word here.. How cool is that?
   dashboard_body = <<DEATHSTAR
 {
   "widgets": [
@@ -76,8 +76,8 @@ resource "aws_cloudwatch_dashboard" "main" {
             "${var.candidate_id}",
             "checkout_latency.avg"
           ],
-          Unit: "Milliseconds"
         ],
+        "Unit": "Milliseconds",
         "period": 300,
         "stat": "Maximum",
         "region": "eu-west-1",
