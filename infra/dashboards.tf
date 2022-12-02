@@ -74,7 +74,7 @@ resource "aws_cloudwatch_dashboard" "main" {
         "metrics": [
           [
             "${var.candidate_id}",
-            "no.shoppifly.ShoppingCartController.checkout.checkout_latency.avg"
+            "checkout_latency.avg"
           ]
         ],
         "period": 300,
