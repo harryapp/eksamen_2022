@@ -75,7 +75,7 @@ resource "aws_cloudwatch_dashboard" "main" {
           [
             "${var.candidate_id}",
             "checkout_latency.avg"
-          ],
+          ]
         ],
         "period": 300,
         "stat": "Maximum",
@@ -86,7 +86,6 @@ resource "aws_cloudwatch_dashboard" "main" {
         "exception": "none"
       }
     }
-
   ]
 }
 DEATHSTAR
