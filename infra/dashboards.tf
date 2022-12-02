@@ -71,7 +71,7 @@ resource "aws_cloudwatch_dashboard" "main" {
       "height": 6,
       "properties": {
         "metrics": [
-          { "expression": "SELECT MAX(CPUUtilization) FROM SCHEMA(\"AWS/EC2\", InstanceId) GROUP BY InstanceId LIMIT 10", "label": "View the 10 max CPU Utilization", "id": "q1" }
+          [ { "expression": "SELECT MAX(CPUUtilization) FROM SCHEMA(\"AWS/EC2\", InstanceId) GROUP BY InstanceId LIMIT 10", "label": "View the 10 max CPU Utilization", "id": "q1" } ]
         ],
         "period": 300,
         "stat": "Average",
