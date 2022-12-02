@@ -6,7 +6,6 @@ terraform {
     }
   }
 
-
   backend "s3" {
     bucket = "terraform-state-1037"
     key    = "shopifly/terraform.state"
