@@ -77,6 +77,9 @@ resource "aws_cloudwatch_dashboard" "main" {
             "checkout_latency.avg",
           ]
         ],
+        "class": "no.shoppifly.ShoppingCartController",
+        "expection": "none",
+        "method": "checkout",
         "period": 300,
         "stat": "Average",
         "region": "eu-west-1",
