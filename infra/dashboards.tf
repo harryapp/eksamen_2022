@@ -71,7 +71,7 @@ resource "aws_cloudwatch_dashboard" "main" {
       "height": 6,
       "properties": {
         "metrics": [
-          [ { "expression": "SELECT SUM(\"checkout_latency.avg\") FROM SCHEMA(\"1037\", class,\"exception\",\"method\") WHERE \"exception\" = 'none' AND \"method\" = 'checkout' AND class = 'no.shoppifly.ShoppingCartController'", "label": "checkout_latency" } ]
+          [ { "expression": "SELECT AVG(\"checkout_latency.avg\") FROM SCHEMA(\"1037\", class,\"exception\",\"method\") WHERE \"exception\" = 'none' AND \"method\" = 'checkout' AND class = 'no.shoppifly.ShoppingCartController'", "label": "checkout_latency" } ]
         ],
         "period": 300,
         "stat": "Average",
