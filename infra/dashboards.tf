@@ -72,6 +72,7 @@ resource "aws_cloudwatch_dashboard" "main" {
       "properties": {
         "metrics": [
           [ "1037", "checkout_latency.avg", "exception", "none", "method", "checkout", "class", "no.shoppifly.ShoppingCartController" ]
+        ],
         "period": 300,
         "stat": "Average",
         "region": "eu-west-1",
