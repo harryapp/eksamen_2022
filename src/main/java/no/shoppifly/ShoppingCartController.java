@@ -37,7 +37,8 @@ public class ShoppingCartController {
      */
     @Timed(value = "checkout_latency")
     @PostMapping(path = "/cart/checkout")
-    public String checkout(@RequestBody Cart cart) {
+    public String checkout(@RequestBody Cart cart) throws InterruptedException {
+        Thread.sleep(2000);
         return cartService.checkout(cart);
     }
 
