@@ -1,6 +1,6 @@
 resource "aws_cloudwatch_metric_alarm" "cart_alarm" {
   alarm_name                = "greater_than_5_carts_alarm"
-  namespace                 = var.student_name
+  namespace                 = var.candidate_id
   metric_name               = "carts.value"
 
   comparison_operator       = "GreaterThanThreshold"
