@@ -1,3 +1,4 @@
+/*
 resource "aws_cloudwatch_dashboard" "main" {
   dashboard_name = var.candidate_id
   ## Jim; seriously! we can use any word here.. How cool is that?
@@ -71,7 +72,7 @@ resource "aws_cloudwatch_dashboard" "main" {
       "height": 6,
       "properties": {
         "metrics": [
-          [ "1037", "checkout_latency.avg", "exception", "none", "method", "checkout", "class", "no.shoppifly.ShoppingCartController" ]
+          [ "${var.candidate_id}", "checkout_latency.avg", "exception", "none", "method", "checkout", "class", "no.shoppifly.ShoppingCartController" ]
         ],
         "period": 300,
         "stat": "Average",
@@ -83,3 +84,5 @@ resource "aws_cloudwatch_dashboard" "main" {
 }
 DEATHSTAR
 }
+
+*/
