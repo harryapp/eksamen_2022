@@ -60,10 +60,8 @@ class NaiveCartImpl implements CartService, ApplicationListener<ApplicationEvent
 
     @Override
     public void onApplicationEvent(ApplicationEvent applicationEvent) {
-        //"carts" - Antall handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
         Gauge.builder("carts", shoppingCarts, s -> s.values().size()).register(meterRegistry);
 
-        //"cartsvalue" - Total sum med penger i handlekurver på et gitt tidspunkt i tid - verdien kan gå opp og ned ettersom kunder sjekker ut handlekurver og nye blir laget.
         Gauge.builder("cartsvalue", shoppingCarts,
                         s -> s.values()
                                 .stream()
@@ -72,12 +70,5 @@ class NaiveCartImpl implements CartService, ApplicationListener<ApplicationEvent
                                 .sum())
                 .register(meterRegistry);
 
-        //counter = Counter.builder("checkouts" ).register(meterRegistry);
-        //"checkouts" - Totalt antall handlevogner er blitt sjekket ut
-        //Gauge.builder("checkouts",  numberOfCheckouts, Integer::valueOf).register(meterRegistry);
-
-
-
-        //"checkout_latency" - Gjennomsnittlig responstid for Checkout metoden i Controller-klassen.
     }
 }
