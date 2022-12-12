@@ -56,7 +56,14 @@ For å løse problemet må man:
 2.	Gå inn på https://github.com/<githubkonto>/<repo-navn>/settings/secrets/actions, og opprett to nye miljøvariabler (new repository secret): DOCKER_HUB_USERNAME og DOCKER_HUB_TOKEN med verdiene henholdsvis DockerHUB-brukernavnet sitt og det nye tilgangs-tokenet generert i step 1.
 
 ### Del 3 oppgave 3
-For at sensor skal kunne laste opp container imaget fra sin fork til sitt ECR repo, må han gå inn på docker.yml, og endre på kommandoene "docker tag" og "docker push": skifte ut ECR-navnet til sitt ECR
+
+<p>
+For at sensor skal kunne laste opp container imaget fra sin fork til sitt ECR repo, må han gå inn på docker.yml, og endre på kommandoene "docker tag" og "docker push": skifte ut ECR-navnet til sitt ECR.
+
+</p>
+<p>
+I det forkede repoet i Gihub må sensor definere to miljøvariabler AWS_ACCESS_KEY_ID og AWS_SECRET_ACCESS_KEY, med verdiene lik key value pairet generet i AWS i AIM/Users/Security, under fanen Security credentials, i felt Access keys
+</p>
 
 ```
 ...
