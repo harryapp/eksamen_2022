@@ -1,6 +1,9 @@
 name: Publish Docker image
 
 on:
+  push:
+    branches:
+      - main
   pull-request:
     branches:
       - main
