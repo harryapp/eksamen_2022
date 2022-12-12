@@ -38,7 +38,7 @@ For å redusere eller fjerne risiko ved hyppige leveranser, kan DevOps-prinsippe
 Beskrivelse av hvordan man konfigurer branch protection:
 </p>
 
-1. Gå til "https://github.com/<githubkonto>/<repo-navn>/settings/branch_protection_rules/new" (må fylle inn verdi for githubkonto og repo-navn)
+1. Gå til "https://github.com/< githubkonto\>/<repo-navn\>/settings/branch_protection_rules/new" (må fylle inn verdi for githubkonto og repo-navn)
 2. Under "Branch name pattern", legg in navnet på branchen det gjelder, som er "main" i dette tilfelle
 3. Huk av "Require a pull request before merging" slik at Ingen kan pushe kode direkte på main branch
 4. Huk av "Require approvals" så Kode kan merges til main branch ved å lage en Pull request med minst en godkjenning (default er minst en godkjenning, og går til maks seks)
